@@ -1,3 +1,9 @@
+---
+name: check-pipeline
+description: Verify a project is correctly wired into the devlog/dnuke.com pipeline. Use when the user asks to check, verify, or diagnose their project setup.
+allowed-tools: Read, Bash, Glob
+---
+
 Verify this project is correctly wired into the devlog/dnuke.com/wip-stream pipeline. Report what's present, what's missing, and what to do about it.
 
 ## Checks

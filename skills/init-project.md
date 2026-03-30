@@ -1,3 +1,10 @@
+---
+name: init-project
+description: Scaffold or update .project.toml for a project, wiring it into the devlog/dnuke.com pipeline with a stable UUID and publish config. Use when starting a new project or when .project.toml is missing or incomplete.
+argument-hint: [project-name]
+allowed-tools: Read, Write, Bash
+---
+
 Create or update `.project.toml` for this project, wiring it into the devlog/dnuke.com/wip-stream pipeline.
 
 ## Steps

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # claude-skills install script
-# Installs personal Claude Code skills into ~/.claude/commands/
+# Installs personal Claude Code skills into ~/.claude/skills/
 #
 # Usage:
 #   bash <(curl -fsSL https://raw.githubusercontent.com/dnewcome/claude-skills/main/install.sh)
@@ -20,10 +20,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-COMMANDS_DIR="$HOME/.claude/commands"
-mkdir -p "$COMMANDS_DIR"
+SKILLS_DIR="$HOME/.claude/skills"
+mkdir -p "$SKILLS_DIR"
 
-echo "Installing claude-skills@${TAG} into $COMMANDS_DIR..."
+echo "Installing claude-skills@${TAG} into $SKILLS_DIR..."
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
@@ -38,13 +38,12 @@ echo "  Fetching $TARBALL_URL..."
 curl -fsSL "$TARBALL_URL" | tar xz -C "$TMP"
 SRC=$(ls "$TMP")
 
-cp "$TMP/$SRC/commands/"*.md "$COMMANDS_DIR/"
-echo "  Copied skills ✓"
+for f in "$TMP/$SRC/skills/"*.md; do
+  skill=$(basename "$f" .md)
+  mkdir -p "$SKILLS_DIR/$skill"
+  cp "$f" "$SKILLS_DIR/$skill/SKILL.md"
+  echo "  ✓ $skill"
+done
 
 echo ""
 echo "✅ claude-skills@${TAG} installed."
-echo "   Available in any Claude Code session:"
-for f in "$TMP/$SRC/commands/"*.md; do
-  skill=$(basename "$f" .md)
-  echo "   /$skill"
-done
