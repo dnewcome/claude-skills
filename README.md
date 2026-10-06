@@ -30,6 +30,10 @@ Verify a project is correctly wired: UUID present, devlog-tools installed, git h
 
 Add a static project page to dnuke.com for art installations, offline work, or anything without a GitHub repo. Synced GitHub repos are handled automatically by `sync-projects.sh`.
 
+### `move-project`
+
+Relocate a project across all three places it lives at once: its GitHub owner (user↔org transfer), its local folder under `~/sandbox/…`, and its Claude Code session history + memory under `~/.claude/projects/` (so `/resume` still works). Also fixes hardcoded absolute paths that break after a move. The three moves are independent — it does only the ones you ask for and offers the rest. Handles the self-move gotcha (relocating the folder you're running from) and the project-dir name encoding.
+
 ## Relationship to devlog-tools
 
 | | devlog-tools | claude-skills |
