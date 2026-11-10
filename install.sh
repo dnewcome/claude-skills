@@ -38,10 +38,20 @@ echo "  Fetching $TARBALL_URL..."
 curl -fsSL "$TARBALL_URL" | tar xz -C "$TMP"
 SRC=$(ls "$TMP")
 
+# Single-file skills: skills/<name>.md
 for f in "$TMP/$SRC/skills/"*.md; do
   skill=$(basename "$f" .md)
   mkdir -p "$SKILLS_DIR/$skill"
   cp "$f" "$SKILLS_DIR/$skill/SKILL.md"
+  echo "  ✓ $skill"
+done
+
+# Folder skills (SKILL.md plus scripts/etc.): skills/<name>/SKILL.md
+for d in "$TMP/$SRC/skills/"*/; do
+  [[ -f "$d/SKILL.md" ]] || continue
+  skill=$(basename "$d")
+  mkdir -p "$SKILLS_DIR/$skill"
+  cp -R "$d". "$SKILLS_DIR/$skill/"
   echo "  ✓ $skill"
 done
 

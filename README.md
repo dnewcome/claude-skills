@@ -34,6 +34,10 @@ Add a static project page to dnuke.com for art installations, offline work, or a
 
 Relocate a project across all three places it lives at once: its GitHub owner (user↔org transfer), its local folder under `~/sandbox/…`, and its Claude Code session history + memory under `~/.claude/projects/` (so `/resume` still works). Also fixes hardcoded absolute paths that break after a move. The three moves are independent — it does only the ones you ask for and offers the rest. Handles the self-move gotcha (relocating the folder you're running from) and the project-dir name encoding.
 
+### `product-design`
+
+Turn code-CAD parts (build123d / STL) into presentation assets: a textured, Y-up GLB with PBR materials, a fast OpenSCAD placement preview, and photoreal headless-Blender renders and turntables (GIF/MP4). Includes `scripts/blender_render.py` (studio lighting, auto-framed camera, GPU auto-select, AgX). Covers the traps: Blender 5's `refresh_devices()` change, the OCIO locale segfault (`LC_ALL=C`), Z-up vs Y-up, and thin shells needing `doubleSided`.
+
 ## Relationship to devlog-tools
 
 | | devlog-tools | claude-skills |
